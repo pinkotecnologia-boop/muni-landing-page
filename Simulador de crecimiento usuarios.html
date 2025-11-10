@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUNI - Simulador de Proyección Gerencial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .metric-card { transition: transform 0.2s; }
+        .metric-card:hover { transform: translateY(-2px); }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            background: #E5E7EB;
+            border-radius: 4px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #20B2AA;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #20B2AA;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-teal-600 to-green-600 text-white py-6 px-4 shadow-lg">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-3xl font-bold mb-1">👥 MUNI - Simulador de Crecimiento de Usuarios</h1>
+            <p class="text-teal-100">Proyección de usuarios, clientes y asociados a 36 meses</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto p-4 md:p-6">
+
+        <!-- Controls Panel -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                <span class="mr-2">⚙️</span> Variables de Crecimiento
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <!-- Adquisición -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 mb-3 pb-2 border-b">Adquisición de Usuarios</h3>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-1">
+                            Usuarios Iniciales Mes 1
+                        </label>
+                        <input type="range" id="usuariosIniciales" min="100" max="2000" step="50" value="500" class="w-full">
+                        <div class="text-right text-sm font-semibold text-teal-600" id="inicialesDisplay">500</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-1">
+                            Crecimiento Mensual (%)
+                        </label>
+                        <input type="range" id="crecimientoMensual" min="5" max="50" step="1" value="20" class="w-full">
+                        <div class="text-right text-sm font-semibold text-teal-600" id="crecimientoDisplay">20%</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-1">
+                            Tasa Viral (Referidos %)
+                        </label>
+                        <input type="range" id="tasaViral" min="0" max="30" step="1" value="15" class="w-full">
+                        <div class="text-right text-sm font-semibold text-teal-600" id="viralDisplay">15%</div>
+                    </div>
+                </div>
+
+                <!-- Conversión & Retención -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 mb-3 pb-2 border-b">Conversión & Retención</h3>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-1">
+                            Usuario → Cliente (%)
+                        </label>
+                        <input type="range" id="convCliente" min="5" max="40" step="1" value="20" class="w-full">
+                        <div class="text-right text-sm font-semibold text-teal-600" id="clienteDisplay">20%</div>
+                        <p class="text-xs text-gray-500 mt-1">Usan 2+ productos</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-1">
+                            Cliente → Asociado (%)
+                        </label>
+                        <input type="range" id="convAsociado" min="10" max="50" step="1" value="30" class="w-full">
+                        <div class="text-right text-sm font-semibold text-teal-600" id="asociadoDisplay">30%</div>
+                        <p class="text-xs text-gray-500 mt-1">Aportan capital + voto</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-1">
+                            Churn Mensual (%)
+                        </label>
+                        <input type="range" id="churnRate" min="1" max="15" step="0.5" value="5" class="w-full">
+                        <div class="text-right text-sm font-semibold text-teal-600" id="churnDisplay">5%</div>
+                        <p class="text-xs text-gray-500 mt-1">Usuarios que abandonan</p>
+                    </div>
+                </div>
+
+                <!-- Configuración -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 mb-3 pb-2 border-b">Configuración</h3>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-1">
+                            Mes de Lanzamiento
+                        </label>
+                        <select id="mesLanzamiento" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            <option value="0">Enero 2026</option>
+                            <option value="1">Febrero 2026</option>
+                            <option value="2">Marzo 2026</option>
+                            <option value="3">Abril 2026</option>
+                            <option value="4">Mayo 2026</option>
+                            <option value="5">Junio 2026</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-1">
+                            Proyección (meses)
+                        </label>
+                        <div class="flex items-center gap-2">
+                            <button id="horizonteMinus" class="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded">-</button>
+                            <span id="horizonteDisplay" class="text-lg font-bold text-gray-800 w-12 text-center">36</span>
+                            <button id="horizontePlus" class="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded">+</button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Máximo 36 meses (3 años)</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-1">
+                            Aceleración Crecimiento
+                        </label>
+                        <select id="aceleracion" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            <option value="lineal">Lineal (constante)</option>
+                            <option value="moderado" selected>Moderado (S-curve)</option>
+                            <option value="agresivo">Agresivo (exponencial)</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Escenario Selector -->
+            <div class="mt-6 pt-4 border-t">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Escenario de Proyección</label>
+                <div class="flex gap-2">
+                    <button id="escPesimista" class="flex-1 py-2 px-4 rounded border-2 border-gray-300 hover:border-red-400 transition">
+                        <span class="block font-semibold">Pesimista</span>
+                        <span class="text-xs text-gray-500">50% metas</span>
+                    </button>
+                    <button id="escRealista" class="flex-1 py-2 px-4 rounded border-2 border-teal-500 bg-teal-50 transition">
+                        <span class="block font-semibold text-teal-700">Realista</span>
+                        <span class="text-xs text-teal-600">75% metas</span>
+                    </button>
+                    <button id="escOptimista" class="flex-1 py-2 px-4 rounded border-2 border-gray-300 hover:border-green-400 transition">
+                        <span class="block font-semibold">Optimista</span>
+                        <span class="text-xs text-gray-500">100% metas</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics Cards -->
+        <div class="grid md:grid-cols-3 gap-4 mb-6">
+            
+            <div class="metric-card bg-gradient-to-br from-teal-500 to-teal-600 text-white rounded-lg shadow-lg p-6">
+                <div class="text-sm opacity-90 mb-2">👥 Usuarios Totales</div>
+                <div class="text-4xl font-bold mb-1" id="usuariosFinales">0</div>
+                <div class="text-sm opacity-90">Mes 36</div>
+                <div class="mt-3 pt-3 border-t border-teal-400 text-xs">
+                    <span id="crecimientoTotal">+0%</span> crecimiento total
+                </div>
+            </div>
+
+            <div class="metric-card bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg shadow-lg p-6">
+                <div class="text-sm opacity-90 mb-2">🎯 Clientes Activos</div>
+                <div class="text-4xl font-bold mb-1" id="clientesFinales">0</div>
+                <div class="text-sm opacity-90" id="porcentajeClientes">0% de usuarios</div>
+                <div class="mt-3 pt-3 border-t border-blue-400 text-xs">
+                    Usan 2+ productos
+                </div>
+            </div>
+
+            <div class="metric-card bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg shadow-lg p-6">
+                <div class="text-sm opacity-90 mb-2">⭐ Asociados Formales</div>
+                <div class="text-4xl font-bold mb-1" id="asociadosFinales">0</div>
+                <div class="text-sm opacity-90" id="porcentajeAsociados">0% de clientes</div>
+                <div class="mt-3 pt-3 border-t border-purple-400 text-xs">
+                    Capital + voto cooperativa
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Charts -->
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+            
+            <!-- Chart 1: Usuarios -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">📈 Crecimiento de Usuarios (36 meses)</h3>
+                <canvas id="chartUsuarios"></canvas>
+                <div class="mt-4 flex justify-around text-center text-sm">
+                    <div>
+                        <div class="font-bold text-teal-600" id="usuariosMes12">-</div>
+                        <div class="text-gray-500">Mes 12</div>
+                    </div>
+                    <div>
+                        <div class="font-bold text-teal-600" id="usuariosMes24">-</div>
+                        <div class="text-gray-500">Mes 24</div>
+                    </div>
+                    <div>
+                        <div class="font-bold text-teal-600" id="usuariosMes36">-</div>
+                        <div class="text-gray-500">Mes 36</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart 2: Embudo -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">🎯 Embudo de Conversión (Mes 36)</h3>
+                <canvas id="chartEmbudo"></canvas>
+                <div class="mt-4 space-y-2">
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="flex items-center"><span class="w-3 h-3 bg-teal-500 rounded-full mr-2"></span>Usuarios</span>
+                        <span class="font-bold" id="embudoUsuarios">-</span>
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>Clientes</span>
+                        <span class="font-bold" id="embudoClientes">-</span>
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="flex items-center"><span class="w-3 h-3 bg-purple-500 rounded-full mr-2"></span>Asociados</span>
+                        <span class="font-bold" id="embudoAsociados">-</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tabla de Detalle -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Proyección Mensual Detallada (Primeros 12 Meses)</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-4 py-2 text-left font-semibold text-gray-700">Mes</th>
+                            <th class="px-4 py-2 text-right font-semibold text-gray-700">Usuarios</th>
+                            <th class="px-4 py-2 text-right font-semibold text-gray-700">Nuevos</th>
+                            <th class="px-4 py-2 text-right font-semibold text-gray-700">Churn</th>
+                            <th class="px-4 py-2 text-right font-semibold text-gray-700">Clientes</th>
+                            <th class="px-4 py-2 text-right font-semibold text-gray-700">Asociados</th>
+                            <th class="px-4 py-2 text-right font-semibold text-gray-700">Crecimiento</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaDetalle">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // STATE
+        let state = {
+            usuariosIniciales: 500,
+            crecimientoMensual: 0.20,
+            tasaViral: 0.15,
+            convCliente: 0.20,
+            convAsociado: 0.30,
+            churnRate: 0.05,
+            horizonte: 36,
+            mesLanzamiento: 0,
+            aceleracion: 'moderado'
+        };
+
+        let charts = {
+            usuarios: null,
+            financiero: null
+        };
+
+        // HELPER FUNCTIONS
+        function formatCurrency(value) {
+            if (value >= 1000000000) return '$' + (value / 1000000000).toFixed(1) + 'B';
+            if (value >= 1000000) return '$' + (value / 1000000).toFixed(1) + 'M';
+            if (value >= 1000) return '$' + (value / 1000).toFixed(0) + 'k';
+            return '$' + value.toLocaleString('es-CO');
+        }
+
+        function formatNumber(value) {
+            return value.toLocaleString('es-CO');
+        }
+
+        // CALCULATION ENGINE
+        function calcularProyeccion() {
+            const meses = state.horizonte;
+            const proyeccion = {
+                meses: [],
+                usuarios: [],
+                nuevos: [],
+                churn: [],
+                clientes: [],
+                asociados: [],
+                crecimiento: []
+            };
+
+            let usuariosAcum = state.usuariosIniciales;
+            let clientesAcum = 0;
+            let asociadosAcum = 0;
+
+            for (let mes = 1; mes <= meses; mes++) {
+                // Factor de aceleración según curva seleccionada
+                let factorAceleracion = 1.0;
+                if (state.aceleracion === 'lineal') {
+                    factorAceleracion = 1.0;
+                } else if (state.aceleracion === 'moderado') {
+                    // S-curve: crece más rápido en medio, se estabiliza al final
+                    factorAceleracion = 1 / (1 + Math.exp(-0.1 * (mes - 18))) * 1.5;
+                } else if (state.aceleracion === 'agresivo') {
+                    // Exponencial: aceleración constante
+                    factorAceleracion = Math.pow(1.05, mes / 6);
+                }
+                
+                // Usuarios nuevos (orgánicos + virales)
+                const crecimientoBase = usuariosAcum * state.crecimientoMensual * factorAceleracion;
+                const usuariosVirales = usuariosAcum * state.tasaViral / 12;
+                const usuariosNuevos = Math.floor(crecimientoBase + usuariosVirales);
+                
+                // Churn
+                const usuariosPerdidos = Math.floor(usuariosAcum * state.churnRate);
+                const netoCrecimiento = usuariosNuevos - usuariosPerdidos;
+                usuariosAcum = Math.max(state.usuariosIniciales, usuariosAcum + netoCrecimiento);
+                
+                // Conversiones acumuladas
+                clientesAcum = Math.floor(usuariosAcum * state.convCliente);
+                asociadosAcum = Math.floor(clientesAcum * state.convAsociado);
+                
+                // Tasa de crecimiento mes sobre mes
+                const tasaCrecimiento = proyeccion.usuarios.length > 0 
+                    ? ((usuariosAcum - proyeccion.usuarios[proyeccion.usuarios.length - 1]) / proyeccion.usuarios[proyeccion.usuarios.length - 1] * 100)
+                    : 0;
+                
+                // Guardar
+                proyeccion.meses.push(mes);
+                proyeccion.usuarios.push(usuariosAcum);
+                proyeccion.nuevos.push(usuariosNuevos);
+                proyeccion.churn.push(usuariosPerdidos);
+                proyeccion.clientes.push(clientesAcum);
+                proyeccion.asociados.push(asociadosAcum);
+                proyeccion.crecimiento.push(tasaCrecimiento);
+            }
+
+            return proyeccion;
+        }
+
+        // UPDATE UI
+        function actualizarUI() {
+            const proyeccion = calcularProyeccion();
+            
+            // Key metrics
+            const usuariosFinales = proyeccion.usuarios[proyeccion.usuarios.length - 1];
+            const clientesFinales = proyeccion.clientes[proyeccion.clientes.length - 1];
+            const asociadosFinales = proyeccion.asociados[proyeccion.asociados.length - 1];
+            const usuariosIniciales = state.usuariosIniciales;
+            
+            // Actualizar cards principales
+            document.getElementById('usuariosFinales').textContent = formatNumber(usuariosFinales);
+            document.getElementById('clientesFinales').textContent = formatNumber(clientesFinales);
+            document.getElementById('asociadosFinales').textContent = formatNumber(asociadosFinales);
+            
+            // Porcentajes
+            const porcentajeClientes = ((clientesFinales / usuariosFinales) * 100).toFixed(1);
+            const porcentajeAsociados = ((asociadosFinales / clientesFinales) * 100).toFixed(1);
+            document.getElementById('porcentajeClientes').textContent = `${porcentajeClientes}% de usuarios`;
+            document.getElementById('porcentajeAsociados').textContent = `${porcentajeAsociados}% de clientes`;
+            
+            // Crecimiento total
+            const crecimientoTotal = ((usuariosFinales - usuariosIniciales) / usuariosIniciales * 100).toFixed(0);
+            document.getElementById('crecimientoTotal').textContent = `+${crecimientoTotal}%`;
+            
+            // Milestones
+            const mes12Index = Math.min(11, proyeccion.usuarios.length - 1);
+            const mes24Index = Math.min(23, proyeccion.usuarios.length - 1);
+            const mes36Index = proyeccion.usuarios.length - 1;
+            
+            document.getElementById('usuariosMes12').textContent = formatNumber(proyeccion.usuarios[mes12Index]);
+            document.getElementById('usuariosMes24').textContent = formatNumber(proyeccion.usuarios[mes24Index]);
+            document.getElementById('usuariosMes36').textContent = formatNumber(proyeccion.usuarios[mes36Index]);
+            
+            // Embudo
+            document.getElementById('embudoUsuarios').textContent = formatNumber(usuariosFinales);
+            document.getElementById('embudoClientes').textContent = `${formatNumber(clientesFinales)} (${porcentajeClientes}%)`;
+            document.getElementById('embudoAsociados').textContent = `${formatNumber(asociadosFinales)} (${porcentajeAsociados}%)`;
+            
+            // Actualizar charts
+            actualizarCharts(proyeccion);
+            
+            // Actualizar tabla
+            actualizarTabla(proyeccion);
+        }
+
+        function actualizarCharts(proyeccion) {
+            // Chart 1: Usuarios con múltiples líneas
+            const ctxUsuarios = document.getElementById('chartUsuarios').getContext('2d');
+            if (charts.usuarios) charts.usuarios.destroy();
+            
+            charts.usuarios = new Chart(ctxUsuarios, {
+                type: 'line',
+                data: {
+                    labels: proyeccion.meses,
+                    datasets: [
+                        {
+                            label: 'Usuarios',
+                            data: proyeccion.usuarios,
+                            borderColor: '#20B2AA',
+                            backgroundColor: 'rgba(32, 178, 170, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 3
+                        },
+                        {
+                            label: 'Clientes',
+                            data: proyeccion.clientes,
+                            borderColor: '#3B82F6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            fill: false,
+                            tension: 0.4,
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Asociados',
+                            data: proyeccion.asociados,
+                            borderColor: '#A855F7',
+                            backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                            fill: false,
+                            tension: 0.4,
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { 
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Meses desde lanzamiento'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Chart 2: Embudo de conversión (doughnut)
+            const ctxEmbudo = document.getElementById('chartEmbudo').getContext('2d');
+            if (charts.financiero) charts.financiero.destroy();
+            
+            const usuariosFinales = proyeccion.usuarios[proyeccion.usuarios.length - 1];
+            const clientesFinales = proyeccion.clientes[proyeccion.clientes.length - 1];
+            const asociadosFinales = proyeccion.asociados[proyeccion.asociados.length - 1];
+            
+            charts.financiero = new Chart(ctxEmbudo, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Usuarios', 'Clientes', 'Asociados'],
+                    datasets: [{
+                        data: [usuariosFinales, clientesFinales, asociadosFinales],
+                        backgroundColor: [
+                            'rgba(32, 178, 170, 0.8)',
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(168, 85, 247, 0.8)'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed || 0;
+                                    return `${label}: ${value.toLocaleString()}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function actualizarTabla(proyeccion) {
+            const tbody = document.getElementById('tablaDetalle');
+            tbody.innerHTML = '';
+            
+            for (let i = 0; i < Math.min(12, proyeccion.meses.length); i++) {
+                const crecimiento = proyeccion.crecimiento[i];
+                const row = `
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="px-4 py-2 font-semibold">${i + 1}</td>
+                        <td class="px-4 py-2 text-right font-semibold">${formatNumber(proyeccion.usuarios[i])}</td>
+                        <td class="px-4 py-2 text-right text-green-600">+${formatNumber(proyeccion.nuevos[i])}</td>
+                        <td class="px-4 py-2 text-right text-red-600">-${formatNumber(proyeccion.churn[i])}</td>
+                        <td class="px-4 py-2 text-right">${formatNumber(proyeccion.clientes[i])}</td>
+                        <td class="px-4 py-2 text-right">${formatNumber(proyeccion.asociados[i])}</td>
+                        <td class="px-4 py-2 text-right font-semibold" style="color: ${crecimiento >= 0 ? '#48BB78' : '#E53E3E'}">
+                            ${crecimiento >= 0 ? '+' : ''}${crecimiento.toFixed(1)}%
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            }
+        }
+
+        // EVENT LISTENERS
+        function setupEventListeners() {
+            // Sliders
+            document.getElementById('usuariosIniciales').addEventListener('input', (e) => {
+                state.usuariosIniciales = parseInt(e.target.value);
+                document.getElementById('inicialesDisplay').textContent = formatNumber(state.usuariosIniciales);
+                actualizarUI();
+            });
+
+            document.getElementById('crecimientoMensual').addEventListener('input', (e) => {
+                state.crecimientoMensual = parseInt(e.target.value) / 100;
+                document.getElementById('crecimientoDisplay').textContent = parseInt(e.target.value) + '%';
+                actualizarUI();
+            });
+
+            document.getElementById('tasaViral').addEventListener('input', (e) => {
+                state.tasaViral = parseInt(e.target.value) / 100;
+                document.getElementById('viralDisplay').textContent = parseInt(e.target.value) + '%';
+                actualizarUI();
+            });
+
+            document.getElementById('convCliente').addEventListener('input', (e) => {
+                state.convCliente = parseInt(e.target.value) / 100;
+                document.getElementById('clienteDisplay').textContent = parseInt(e.target.value) + '%';
+                actualizarUI();
+            });
+
+            document.getElementById('convAsociado').addEventListener('input', (e) => {
+                state.convAsociado = parseInt(e.target.value) / 100;
+                document.getElementById('asociadoDisplay').textContent = parseInt(e.target.value) + '%';
+                actualizarUI();
+            });
+
+            document.getElementById('churnRate').addEventListener('input', (e) => {
+                state.churnRate = parseFloat(e.target.value) / 100;
+                document.getElementById('churnDisplay').textContent = parseFloat(e.target.value) + '%';
+                actualizarUI();
+            });
+
+            // Selects
+            document.getElementById('mesLanzamiento').addEventListener('change', (e) => {
+                state.mesLanzamiento = parseInt(e.target.value);
+                actualizarUI();
+            });
+
+            document.getElementById('aceleracion').addEventListener('change', (e) => {
+                state.aceleracion = e.target.value;
+                actualizarUI();
+            });
+
+            // Steppers
+            document.getElementById('horizonteMinus').addEventListener('click', () => {
+                if (state.horizonte > 12) {
+                    state.horizonte -= 6;
+                    document.getElementById('horizonteDisplay').textContent = state.horizonte;
+                    actualizarUI();
+                }
+            });
+
+            document.getElementById('horizontePlus').addEventListener('click', () => {
+                if (state.horizonte < 36) {
+                    state.horizonte += 6;
+                    document.getElementById('horizonteDisplay').textContent = state.horizonte;
+                    actualizarUI();
+                }
+            });
+        }
+
+        // INIT
+        window.addEventListener('load', () => {
+            setupEventListeners();
+            actualizarUI();
+        });
+    </script>
+
+</body>
+</html>

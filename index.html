@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUNI - Plataforma Cooperativa Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Logo muni.png" alt="MUNI Logo" class="logo-img">
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#timeline" class="nav-link">Timeline</a></li>
+                <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
+                <li><a href="#calculator" class="nav-link">Simulador</a></li>
+                <li><a href="#app" class="nav-link">App</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+                <li><a href="#contact" class="btn btn--primary btn--sm">Únete Ahora</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo-container">
+                    <img src="Logo muni.png" alt="MUNI Logo" class="hero-logo">
+                </div>
+                <h1 class="hero-title">La Primera Cooperativa <span class="gradient-text">Digital de Colombia</span></h1>
+                <p class="hero-subtitle">Transforma tu dinero en beneficios. Únete a la comunidad que te da más: descuentos, salud, inversiones y voz en las decisiones.</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn--primary btn--lg glow-btn">Comienza Gratis</a>
+                    <a href="#app" class="btn btn--outline btn--lg">Ver Demo</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre MUNI Section -->
+    <section id="sobre-muni" class="sobre-muni">
+        <div class="container">
+            <div class="sobre-muni-content">
+                <h2 class="sobre-muni-title">Sobre MUNI: La puerta común de acceso</h2>
+                <div class="sobre-muni-text">
+                    <p>
+                        En <strong>MUNI</strong>, queremos ser mucho más que una solución digital: nuestra visión es convertirnos en la <strong>puerta de entrada universal</strong> para millones de personas al ecosistema de bienestar, salud y servicios cooperativos en Colombia.
+                    </p>
+                    <p>
+                        Por ello, iniciamos con una <strong>Fase Cero</strong> crítica: la creación de un <strong>protocolo común de ingreso</strong> que facilite, agilice y unifique el proceso para nuevos <strong>usuarios, clientes y futuros socios</strong> —tanto para MUNI como para todo el Grupo Empresarial Cooperativo Coomeva (GECC) y su cooperativa. Este protocolo elimina duplicidades, reduce la fricción y permite que, desde un solo punto digital, cada persona pueda descubrir, validarse, iniciar su recorrido y evolucionar <strong>desde usuario curioso hasta socio participante y copropietario</strong>.
+                    </p>
+                    <p>
+                        Así, nuestra plataforma digital se va transformando, paso a paso, en <strong>la puerta de acceso preferida y natural para todo el ecosistema cooperativo</strong>: primero simplificando la entrada; luego conectando la oferta y, finalmente, empoderando a cada persona para que gestione su bienestar, crecimiento y participación, tanto en los servicios digitales como en la vida democrática y los retornos cooperativos.
+                    </p>
+                    <p>
+                        MUNI integra y orquesta —en un entorno seguro y moderno— la bienvenida y progresión de todos los públicos: <strong>independientes, emprendores, jóvenes, segmentos tradicionales y nuevos</strong>, ofreciendo un recorrido digital progresivo, transparente y personalizado que facilita la participación activa y el desarrollo humano y social.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">¿Por qué elegir MUNI?</h2>
+                <p class="section-subtitle">Más que una app financiera, una cooperativa que te pertenece</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-color="1">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3 class="feature-title">Descuentos Exclusivos</h3>
+                    <p class="feature-description">Accede a beneficios en salud, entretenimiento, transporte y más de 1,200 comercios aliados.</p>
+                </div>
+                <div class="feature-card" data-color="2">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="feature-title">Telemedicina 24/7</h3>
+                    <p class="feature-description">Consultas médicas virtuales ilimitadas con especialistas en cualquier momento del día.</p>
+                </div>
+                <div class="feature-card" data-color="3">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="feature-title">Billetera Digital</h3>
+                    <p class="feature-description">Gestiona tu dinero, invierte y accede a microseguros desde una sola plataforma segura.</p>
+                </div>
+                <div class="feature-card" data-color="4">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Inversiones Inteligentes</h3>
+                    <p class="feature-description">Genera rendimientos de hasta 8% anual con inversiones respaldadas y de bajo riesgo.</p>
+                </div>
+                <div class="feature-card" data-color="5">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Microseguros</h3>
+                    <p class="feature-description">Protección accesible para ti y tu familia sin letra pequeña ni complicaciones.</p>
+                </div>
+                <div class="feature-card" data-color="6">
+                    <div class="feature-icon">
+                        <i class="fas fa-vote-yea"></i>
+                    </div>
+                    <h3 class="feature-title">Gobernanza Digital</h3>
+                    <p class="feature-description">Vota en decisiones importantes y participa en las ganancias de la cooperativa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline" id="timeline">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tu Camino en MUNI</h2>
+                <p class="section-subtitle">Crece con nosotros: de Usuario a Asociado</p>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-line">
+                    <div class="timeline-progress" id="timelineProgress"></div>
+                </div>
+                <div class="timeline-item" data-phase="1">
+                    <div class="timeline-dot">
+                        <div class="dot-pulse"></div>
+                        <span class="dot-number">1</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">Nivel 1: Acceso a Beneficios</div>
+                        <h3 class="timeline-title">Usuario - Acceso a Beneficios</h3>
+                        <p class="timeline-description">Registro seguro con acceso a beneficios esenciales. Sin cuotas, sin compromisos.</p>
+                        <ul class="timeline-benefits">
+                            <li><i class="fas fa-check"></i> Registro seguro con OTP</li>
+                            <li><i class="fas fa-check"></i> Verificación básica de identidad</li>
+                            <li><i class="fas fa-check"></i> Descuentos en salud y entretenimiento</li>
+                            <li><i class="fas fa-check"></i> Programa de recompensas (Pinos)</li>
+                            <li><i class="fas fa-check"></i> Alianzas y convenios exclusivos</li>
+                        </ul>
+                        <div class="timeline-cta">
+                            <a href="#contact" class="btn btn--outline btn--sm">Completar Validación para más beneficios</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-phase="2">
+                    <div class="timeline-dot">
+                        <div class="dot-pulse"></div>
+                        <span class="dot-number">2</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">Nivel 2: Acceso Total</div>
+                        <h3 class="timeline-title">Cliente - Acceso Total</h3>
+                        <p class="timeline-description">Verificación biométrica completa para acceso a servicios financieros avanzados.</p>
+                        <ul class="timeline-benefits">
+                            <li><i class="fas fa-check"></i> Verificación biométrica</li>
+                            <li><i class="fas fa-check"></i> Autenticación del documento de identidad</li>
+                            <li><i class="fas fa-check"></i> Doble factor de autenticación</li>
+                            <li><i class="fas fa-check"></i> Cuenta bancaria digital</li>
+                            <li><i class="fas fa-check"></i> Acceso a inversiones</li>
+                            <li><i class="fas fa-check"></i> Llave B-Breve</li>
+                            <li><i class="fas fa-check"></i> Seguros integrales</li>
+                            <li><i class="fas fa-check"></i> Dashboard financiero completo</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item" data-phase="3">
+                    <div class="timeline-dot">
+                        <div class="dot-pulse"></div>
+                        <span class="dot-number">3</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">Nivel 3: Acceso Exclusivo</div>
+                        <h3 class="timeline-title">Asociado - Acceso Exclusivo</h3>
+                        <p class="timeline-description">Activación formal como asociado con acceso a beneficios exclusivos y participación democrática.</p>
+                        <ul class="timeline-benefits">
+                            <li><i class="fas fa-check"></i> Activación formal como asociado</li>
+                            <li><i class="fas fa-check"></i> Cumplimiento documental completo</li>
+                            <li><i class="fas fa-check"></i> Participación en mecanismos democráticos (asambleas)</li>
+                            <li><i class="fas fa-check"></i> Gestión de acciones</li>
+                            <li><i class="fas fa-check"></i> Opciones preferenciales de inversión</li>
+                            <li><i class="fas fa-check"></i> Productos mutuos exclusivos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulador de Crecimiento de Usuarios -->
+    <section class="user-growth-simulator" id="calculator">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Simulador de Crecimiento de Usuarios</h2>
+                <p class="section-subtitle">Visualiza el potencial de crecimiento de MUNI como puerta de entrada al ecosistema cooperativo</p>
+            </div>
+            <div class="simulator-container">
+                <div class="simulator-description">
+                    <p>Este simulador muestra cómo MUNI puede transformarse en la puerta de entrada preferida para millones de usuarios al ecosistema de bienestar, salud y servicios cooperativos del Grupo Coomeva.</p>
+                    <p>El crecimiento se basa en nuestro protocolo común de ingreso que facilita la progresión desde usuario hasta socio participante.</p>
+                </div>
+                <div class="simulator-embed">
+                    <iframe 
+                        src="Simulador de crecimiento usuarios.html" 
+                        width="100%" 
+                        height="800" 
+                        frameborder="0"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="simulator-insights">
+                    <div class="insight-card">
+                        <div class="insight-icon"><i class="fas fa-users"></i></div>
+                        <h4>Modelo de Crecimiento</h4>
+                        <p>Simula diferentes escenarios de adquisición y conversión de usuarios</p>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-icon"><i class="fas fa-chart-line"></i></div>
+                        <h4>Embudo de Conversión</h4>
+                        <p>Visualiza la progresión de usuarios a clientes y asociados</p>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-icon"><i class="fas fa-cogs"></i></div>
+                        <h4>Variables Ajustables</h4>
+                        <p>Controla tasas de crecimiento, conversión y retención en tiempo real</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Mockups Section -->
+    <section class="app-section" id="app">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cómo Funciona MUNI</h2>
+                <p class="section-subtitle">Explora cada funcionalidad de nuestra plataforma</p>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel-progress">
+                    <div class="progress-fill" id="carouselProgressFill"></div>
+                </div>
+                <button class="carousel-btn carousel-btn--prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Screen 1: Welcome -->
+                    <div class="carousel-slide active">
+                        <div class="phone-mockup">
+                            <div class="phone-frame">
+                                <div class="phone-notch"></div>
+                                <div class="phone-screen">
+                                    <div class="status-bar">
+                                        <span class="status-time">9:41</span>
+                                        <div class="status-icons">
+                                            <i class="fas fa-signal"></i>
+                                            <i class="fas fa-wifi"></i>
+                                            <i class="fas fa-battery-three-quarters"></i>
+                                        </div>
+                                    </div>
+                                    <div class="screen-content">
+                                        <div class="screen-logo">
+                                            <img src="Logo muni.png" alt="MUNI">
+                                        </div>
+                                        <h2 class="screen-heading">Bienvenido a MUNI</h2>
+                                        <p class="screen-subheading">Registro Rápido</p>
+                                        <div class="welcome-illustration">
+                                            <div class="illus-circle"></div>
+                                            <div class="illus-shapes">
+                                                <div class="illus-shape"></div>
+                                                <div class="illus-shape"></div>
+                                                <div class="illus-shape"></div>
+                                            </div>
+                                        </div>
+                                        <form class="screen-form">
+                                            <div class="form-field">
+                                                <input type="text" placeholder="Nombre completo" class="input-field">
+                                            </div>
+                                            <div class="form-field">
+                                                <input type="text" placeholder="Cédula" class="input-field">
+                                            </div>
+                                            <div class="form-field">
+                                                <input type="tel" placeholder="Teléfono" class="input-field">
+                                            </div>
+                                            <button class="btn-screen btn-screen--primary">Comenzar</button>
+                                        </form>
+                                        <div class="progress-dots">
+                                            <span class="dot dot--active"></span>
+                                            <span class="dot"></span>
+                                            <span class="dot"></span>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-nav">
+                                        <div class="nav-item"><i class="fas fa-home"></i></div>
+                                        <div class="nav-item"><i class="fas fa-search"></i></div>
+                                        <div class="nav-item"><i class="fas fa-plus-circle"></i></div>
+                                        <div class="nav-item"><i class="fas fa-bell"></i></div>
+                                        <div class="nav-item"><i class="fas fa-user"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-badge">Nivel 1: Usuario</div>
+                            <h3 class="slide-title">Bienvenida MUNI</h3>
+                            <p class="slide-description">Registro sencillo en segundos, sin papeles. Completa tu perfil y accede inmediatamente a todos los beneficios básicos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Screen 2: Benefits -->
+                    <div class="carousel-slide">
+                        <div class="phone-mockup">
+                            <div class="phone-frame">
+                                <div class="phone-notch"></div>
+                                <div class="phone-screen">
+                                    <div class="status-bar">
+                                        <span class="status-time">9:41</span>
+                                        <div class="status-icons">
+                                            <i class="fas fa-signal"></i>
+                                            <i class="fas fa-wifi"></i>
+                                            <i class="fas fa-battery-three-quarters"></i>
+                                        </div>
+                                    </div>
+                                    <div class="screen-content">
+                                        <div class="screen-header">
+                                            <h3>Hola, Usuario 👋</h3>
+                                            <i class="fas fa-cog"></i>
+                                        </div>
+                                        <div class="stats-cards">
+                                            <div class="mini-card">
+                                                <div class="mini-icon"><i class="fas fa-tags"></i></div>
+                                                <div class="mini-content">
+                                                    <div class="mini-value">23</div>
+                                                    <div class="mini-label">Descuentos Activos</div>
+                                                </div>
+                                            </div>
+                                            <div class="mini-card">
+                                                <div class="mini-icon"><i class="fas fa-dollar-sign"></i></div>
+                                                <div class="mini-content">
+                                                    <div class="mini-value">$150k</div>
+                                                    <div class="mini-label">Ahorro Mensual</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h4 class="section-title-small">Categorías</h4>
+                                        <div class="category-grid">
+                                            <div class="category-tile">
+                                                <i class="fas fa-heartbeat"></i>
+                                                <span>Salud</span>
+                                                <div class="discount-badge">15%</div>
+                                            </div>
+                                            <div class="category-tile">
+                                                <i class="fas fa-film"></i>
+                                                <span>Entretenimiento</span>
+                                                <div class="discount-badge">20%</div>
+                                            </div>
+                                            <div class="category-tile">
+                                                <i class="fas fa-bus"></i>
+                                                <span>Transporte</span>
+                                                <div class="discount-badge">10%</div>
+                                            </div>
+                                            <div class="category-tile">
+                                                <i class="fas fa-utensils"></i>
+                                                <span>Alimentos</span>
+                                                <div class="discount-badge">12%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-nav">
+                                        <div class="nav-item nav-item--active"><i class="fas fa-home"></i></div>
+                                        <div class="nav-item"><i class="fas fa-search"></i></div>
+                                        <div class="nav-item"><i class="fas fa-ticket-alt"></i></div>
+                                        <div class="nav-item"><i class="fas fa-bell"></i></div>
+                                        <div class="nav-item"><i class="fas fa-user"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-badge">Nivel 1: Usuario</div>
+                            <h3 class="slide-title">Acceso a Beneficios</h3>
+                            <p class="slide-description">Descuentos exclusivos en salud, entretenimiento y más. Ahorra en tus gastos diarios con más de 1,200 comercios aliados.</p>
+                        </div>
+                    </div>
+
+                    <!-- Screen 3: Telemedicine -->
+                    <div class="carousel-slide">
+                        <div class="phone-mockup">
+                            <div class="phone-frame">
+                                <div class="phone-notch"></div>
+                                <div class="phone-screen">
+                                    <div class="status-bar">
+                                        <span class="status-time">9:41</span>
+                                        <div class="status-icons">
+                                            <i class="fas fa-signal"></i>
+                                            <i class="fas fa-wifi"></i>
+                                            <i class="fas fa-battery-three-quarters"></i>
+                                        </div>
+                                    </div>
+                                    <div class="screen-content">
+                                        <div class="screen-header">
+                                            <i class="fas fa-arrow-left"></i>
+                                            <h3>Telemedicina 24/7</h3>
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </div>
+                                        <div class="doctor-card">
+                                            <div class="doctor-photo">
+                                                <div class="photo-placeholder">
+                                                    <i class="fas fa-user-md"></i>
+                                                </div>
+                                            </div>
+                                            <div class="doctor-info">
+                                                <h4>Dr. María López</h4>
+                                                <p>Medicina General</p>
+                                                <div class="availability">
+                                                    <span class="status-dot status-dot--online"></span>
+                                                    <span>Disponible Ahora</span>
+                                                </div>
+                                                <div class="specialties">
+                                                    <span class="specialty-tag">Consulta General</span>
+                                                    <span class="specialty-tag">Pediatría</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn-screen btn-screen--primary">
+                                            <i class="fas fa-video"></i> Iniciar Consulta
+                                        </button>
+                                        <h4 class="section-title-small">Consultas Recientes</h4>
+                                        <div class="consultation-list">
+                                            <div class="consultation-item">
+                                                <div class="consult-icon"><i class="fas fa-stethoscope"></i></div>
+                                                <div class="consult-info">
+                                                    <div class="consult-title">Consulta General</div>
+                                                    <div class="consult-date">Hace 3 días</div>
+                                                </div>
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="consultation-item">
+                                                <div class="consult-icon"><i class="fas fa-prescription"></i></div>
+                                                <div class="consult-info">
+                                                    <div class="consult-title">Receta Médica</div>
+                                                    <div class="consult-date">Hace 1 semana</div>
+                                                </div>
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-nav">
+                                        <div class="nav-item"><i class="fas fa-home"></i></div>
+                                        <div class="nav-item nav-item--active"><i class="fas fa-heartbeat"></i></div>
+                                        <div class="nav-item"><i class="fas fa-wallet"></i></div>
+                                        <div class="nav-item"><i class="fas fa-bell"></i></div>
+                                        <div class="nav-item"><i class="fas fa-user"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-badge">Nivel 1/2: Usuario-Cliente</div>
+                            <h3 class="slide-title">Telemedicina 24/7</h3>
+                            <p class="slide-description">Conecta con especialistas en minutos. Consultas médicas virtuales ilimitadas, prescripciones y seguimiento de tu salud.</p>
+                        </div>
+                    </div>
+
+                    <!-- Screen 4: Wallet -->
+                    <div class="carousel-slide">
+                        <div class="phone-mockup">
+                            <div class="phone-frame">
+                                <div class="phone-notch"></div>
+                                <div class="phone-screen">
+                                    <div class="status-bar">
+                                        <span class="status-time">9:41</span>
+                                        <div class="status-icons">
+                                            <i class="fas fa-signal"></i>
+                                            <i class="fas fa-wifi"></i>
+                                            <i class="fas fa-battery-three-quarters"></i>
+                                        </div>
+                                    </div>
+                                    <div class="screen-content">
+                                        <div class="screen-header">
+                                            <h3>Mi Billetera</h3>
+                                            <i class="fas fa-qrcode"></i>
+                                        </div>
+                                        <div class="balance-card">
+                                            <div class="balance-label">Saldo Disponible</div>
+                                            <div class="balance-amount">$1,250,000</div>
+                                            <div class="balance-currency">COP</div>
+                                        </div>
+                                        <div class="quick-actions">
+                                            <div class="action-btn">
+                                                <div class="action-icon"><i class="fas fa-paper-plane"></i></div>
+                                                <span>Enviar</span>
+                                            </div>
+                                            <div class="action-btn">
+                                                <div class="action-icon"><i class="fas fa-download"></i></div>
+                                                <span>Recibir</span>
+                                            </div>
+                                            <div class="action-btn">
+                                                <div class="action-icon"><i class="fas fa-plus"></i></div>
+                                                <span>Recargar</span>
+                                            </div>
+                                            <div class="action-btn">
+                                                <div class="action-icon"><i class="fas fa-money-bill-wave"></i></div>
+                                                <span>Retirar</span>
+                                            </div>
+                                        </div>
+                                        <h4 class="section-title-small">Movimientos Recientes</h4>
+                                        <div class="transactions-list">
+                                            <div class="transaction-item">
+                                                <div class="trans-icon trans-icon--in"><i class="fas fa-arrow-down"></i></div>
+                                                <div class="trans-info">
+                                                    <div class="trans-title">Recarga</div>
+                                                    <div class="trans-date">Hoy, 10:30 AM</div>
+                                                </div>
+                                                <div class="trans-amount trans-amount--in">+$500,000</div>
+                                            </div>
+                                            <div class="transaction-item">
+                                                <div class="trans-icon trans-icon--out"><i class="fas fa-shopping-cart"></i></div>
+                                                <div class="trans-info">
+                                                    <div class="trans-title">Compra en Farmacia</div>
+                                                    <div class="trans-date">Ayer, 3:15 PM</div>
+                                                </div>
+                                                <div class="trans-amount trans-amount--out">-$45,000</div>
+                                            </div>
+                                        </div>
+                                        <div class="investment-card">
+                                            <div class="invest-header">
+                                                <i class="fas fa-chart-line"></i>
+                                                <span>Ahorros</span>
+                                            </div>
+                                            <div class="invest-amount">$500,000</div>
+                                            <div class="invest-return">+8% anual</div>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-nav">
+                                        <div class="nav-item"><i class="fas fa-home"></i></div>
+                                        <div class="nav-item"><i class="fas fa-heartbeat"></i></div>
+                                        <div class="nav-item nav-item--active"><i class="fas fa-wallet"></i></div>
+                                        <div class="nav-item"><i class="fas fa-bell"></i></div>
+                                        <div class="nav-item"><i class="fas fa-user"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-badge">Nivel 2: Cliente</div>
+                            <h3 class="slide-title">Tu Billetera Digital</h3>
+                            <p class="slide-description">Gestiona dinero, inversiones y seguros en una app. Control total de tus finanzas con retornos garantizados.</p>
+                        </div>
+                    </div>
+
+                    <!-- Screen 5: Governance -->
+                    <div class="carousel-slide">
+                        <div class="phone-mockup">
+                            <div class="phone-frame">
+                                <div class="phone-notch"></div>
+                                <div class="phone-screen">
+                                    <div class="status-bar">
+                                        <span class="status-time">9:41</span>
+                                        <div class="status-icons">
+                                            <i class="fas fa-signal"></i>
+                                            <i class="fas fa-wifi"></i>
+                                            <i class="fas fa-battery-three-quarters"></i>
+                                        </div>
+                                    </div>
+                                    <div class="screen-content">
+                                        <div class="screen-header">
+                                            <h3>Gobernanza Digital</h3>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="proposal-card">
+                                            <div class="proposal-header">
+                                                <span class="proposal-number">#23</span>
+                                                <span class="proposal-status">Activa</span>
+                                            </div>
+                                            <h4 class="proposal-title">Nuevos Servicios Dentales</h4>
+                                            <p class="proposal-description">Expandir cobertura dental con 50 nuevas clínicas aliadas</p>
+                                            <div class="vote-progress">
+                                                <div class="vote-bar">
+                                                    <div class="vote-fill" style="width: 67%;"></div>
+                                                </div>
+                                                <div class="vote-stats">
+                                                    <span>67% Sí</span>
+                                                    <span>33% No</span>
+                                                </div>
+                                            </div>
+                                            <div class="vote-time">
+                                                <i class="far fa-clock"></i>
+                                                <span>3 días restantes</span>
+                                            </div>
+                                            <div class="vote-actions">
+                                                <button class="vote-btn vote-btn--yes">
+                                                    <i class="fas fa-thumbs-up"></i> Votar Sí
+                                                </button>
+                                                <button class="vote-btn vote-btn--no">
+                                                    <i class="fas fa-thumbs-down"></i> Votar No
+                                                </button>
+                                            </div>
+                                            <a href="#" class="view-details">Ver Detalles →</a>
+                                        </div>
+                                        <h4 class="section-title-small">Próximas Votaciones</h4>
+                                        <div class="upcoming-votes">
+                                            <div class="vote-item">
+                                                <div class="vote-icon"><i class="fas fa-building"></i></div>
+                                                <div class="vote-info">
+                                                    <div class="vote-title">Expansión Regional</div>
+                                                    <div class="vote-date">Inicia en 5 días</div>
+                                                </div>
+                                            </div>
+                                            <div class="vote-item">
+                                                <div class="vote-icon"><i class="fas fa-graduation-cap"></i></div>
+                                                <div class="vote-info">
+                                                    <div class="vote-title">Programa Educativo</div>
+                                                    <div class="vote-date">Inicia en 2 semanas</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="participation-card">
+                                            <i class="fas fa-award"></i>
+                                            <span>Tu participación: <strong>89%</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-nav">
+                                        <div class="nav-item"><i class="fas fa-home"></i></div>
+                                        <div class="nav-item"><i class="fas fa-heartbeat"></i></div>
+                                        <div class="nav-item"><i class="fas fa-wallet"></i></div>
+                                        <div class="nav-item nav-item--active"><i class="fas fa-vote-yea"></i></div>
+                                        <div class="nav-item"><i class="fas fa-user"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-info">
+                            <div class="slide-badge">Nivel 3: Asociado</div>
+                            <h3 class="slide-title">Gobernanza Digital</h3>
+                            <p class="slide-description">Vota en decisiones y comparte ganancias. Como asociado, eres dueño y tienes voz en el futuro de MUNI.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn--next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="carousel-dots" id="carouselDots"></div>
+                <div class="carousel-counter" id="carouselCounter">1 / 5</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap" id="roadmap">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Roadmap 2025-2026</h2>
+                <p class="section-subtitle">Nuestro plan de crecimiento e innovación</p>
+            </div>
+            <div class="roadmap-grid">
+                <div class="roadmap-card">
+                    <div class="roadmap-quarter">Q1 2025</div>
+                    <h3 class="roadmap-title">Lanzamiento MVP</h3>
+                    <ul class="roadmap-list">
+                        <li>App móvil iOS y Android</li>
+                        <li>1,000 comercios aliados</li>
+                        <li>Telemedicina básica</li>
+                    </ul>
+                </div>
+                <div class="roadmap-card">
+                    <div class="roadmap-quarter">Q2 2025</div>
+                    <h3 class="roadmap-title">Expansión Financiera</h3>
+                    <ul class="roadmap-list">
+                        <li>Billetera digital completa</li>
+                        <li>Microseguros familiares</li>
+                        <li>Programa de inversiones</li>
+                    </ul>
+                </div>
+                <div class="roadmap-card">
+                    <div class="roadmap-quarter">Q3 2025</div>
+                    <h3 class="roadmap-title">Gobernanza &amp; Comunidad</h3>
+                    <ul class="roadmap-list">
+                        <li>Sistema de votación digital</li>
+                        <li>Distribución de utilidades</li>
+                        <li>10,000 asociados activos</li>
+                    </ul>
+                </div>
+                <div class="roadmap-card">
+                    <div class="roadmap-quarter">Q4 2025</div>
+                    <h3 class="roadmap-title">Expansión Regional</h3>
+                    <ul class="roadmap-list">
+                        <li>Cobertura nacional completa</li>
+                        <li>5,000 comercios aliados</li>
+                        <li>Nuevas categorías de beneficios</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2 class="section-title">¿Listo para Transformar tus Finanzas?</h2>
+                    <p class="section-subtitle">Únete a la cooperativa digital que está cambiando las reglas del juego financiero en Colombia.</p>
+                    <div class="contact-features">
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Registro 100% gratis</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Sin costos ocultos</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Beneficios inmediatos</span>
+                        </div>
+                    </div>
+                    <div class="contact-channels">
+                        <a href="mailto:info@muni.co" class="channel-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@muni.co</span>
+                        </a>
+                        <a href="tel:+573001234567" class="channel-link">
+                            <i class="fas fa-phone"></i>
+                            <span>+57 300 123 4567</span>
+                        </a>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nivel de Interés</label>
+                            <select class="form-control" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="usuario">Usuario (Gratis)</option>
+                                <option value="cliente">Cliente ($100,000)</option>
+                                <option value="asociado">Asociado ($5M+)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mensaje</label>
+                            <textarea class="form-control" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width glow-btn">Enviar Solicitud</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <img src="Logo muni.png" alt="MUNI Logo" class="footer-logo">
+                        <p class="footer-tagline">La cooperativa digital que te pertenece</p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-col">
+                            <h4>Producto</h4>
+                            <ul>
+                                <li><a href="#features">Features</a></li>
+                                <li><a href="#app">App Móvil</a></li>
+                                <li><a href="#calculator">Simulador</a></li>
+                                <li><a href="#roadmap">Roadmap</a></li>
+                                <li><a href="#benefits">Beneficios</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Compañía</h4>
+                            <ul>
+                                <li><a href="#about">Sobre Nosotros</a></li>
+                                <li><a href="#team">Nuestro Equipo</a></li>
+                                <li><a href="#careers">Carreras</a></li>
+                                <li><a href="#press">Prensa</a></li>
+                                <li><a href="#contact">Contacto</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Soporte</h4>
+                            <ul>
+                                <li><a href="#help">Centro de Ayuda</a></li>
+                                <li><a href="#faq">Preguntas Frecuentes</a></li>
+                                <li><a href="#security">Seguridad</a></li>
+                                <li><a href="#contact">Soporte Técnico</a></li>
+                                <li><a href="#status">Estado del Servicio</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Legal</h4>
+                            <ul>
+                                <li><a href="#terms">Términos de Servicio</a></li>
+                                <li><a href="#privacy">Política de Privacidad</a></li>
+                                <li><a href="#cookies">Política de Cookies</a></li>
+                                <li><a href="#compliance">Cumplimiento</a></li>
+                                <li><a href="#licenses">Licencias</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Mantente Informado</h4>
+                    <p>Recibe las últimas noticias y actualizaciones sobre MUNI</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu correo electrónico" class="newsletter-input">
+                        <button type="submit" class="newsletter-btn">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 MUNI. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#terms">Términos</a>
+                        <a href="#privacy">Privacidad</a>
+                        <a href="#cookies">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
